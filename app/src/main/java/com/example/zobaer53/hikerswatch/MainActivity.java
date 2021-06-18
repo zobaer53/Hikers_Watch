@@ -1,6 +1,7 @@
 package com.example.zobaer53.hikerswatch;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -49,25 +50,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     public void updateLocationInfo(Location location) {
 
         Log.i("LocationInfo", location.toString());
 
-        TextView latTextView = (TextView) findViewById(R.id.latTextView);
+        TextView latTextView = findViewById(R.id.latTextView);
 
-        TextView lonTextView = (TextView) findViewById(R.id.lonTextView);
+        TextView lonTextView = findViewById(R.id.lonTextView);
 
-        TextView altTextView = (TextView) findViewById(R.id.altTextView);
+        TextView altTextView = findViewById(R.id.altTextView);
 
-        TextView accTextView = (TextView) findViewById(R.id.accTextView);
+        TextView accTextView = findViewById(R.id.accTextView);
 
-        latTextView.setText("Latitude: " + String.format("%.2f", location.getLatitude()));
+        //Strings moved to strings.xml for translation possibility
+        latTextView.setText(R.string.latitude + String.format("%.2f", location.getLatitude()));
 
-        lonTextView.setText("Longitude: " + String.format("%.2f", location.getLongitude()));
+        lonTextView.setText(R.string.longitude + String.format("%.2f", location.getLongitude()));
 
-        altTextView.setText("Altitude: " + String.format("%.2f", location.getAltitude()) );
+        altTextView.setText(R.string.altitude + String.format("%.2f", location.getAltitude()));
 
-        accTextView.setText("Accuracy: " + String.format("%.2f", location.getAccuracy()));
+        accTextView.setText(R.string.accuracy + String.format("%.2f", location.getAccuracy()));
 
         Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
 
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            TextView addressTextView = (TextView) findViewById(R.id.addressTextView);
+            TextView addressTextView = findViewById(R.id.addressTextView);
 
             addressTextView.setText(address);
 
